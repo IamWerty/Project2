@@ -1,137 +1,396 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* ═══════════════════════════════════════════
+   HTSS Team Website — style.css
+   ═══════════════════════════════════════════ */
+
+:root {
+  --gold:        #e8c56d;
+  --gold-light:  #f5d98a;
+  --gold-dim:    rgba(232, 197, 109, 0.12);
+  --navy:        #0d1b2a;
+  --navy-mid:    #152536;
+  --navy-light:  #1e3448;
+  --navy-card:   #13202f;
+  --text:        #e2ddd4;
+  --text-muted:  #7a96ae;
+  --radius:      14px;
+  --shadow:      0 8px 32px rgba(0,0,0,0.45);
+  --font-d:      'Playfair Display', Georgia, serif;
+  --font-b:      'DM Sans', 'Segoe UI', sans-serif;
 }
+
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-  color: #222;
+  font-family: var(--font-b);
+  background: var(--navy);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.65;
 }
 
-/* ── Шапка ── */
-header {
-  background-color: #1a3a5c;
-  color: white;
+/* ── Background Orbs ── */
+.bg-orb {
+  position: fixed; border-radius: 50%;
+  filter: blur(90px); pointer-events: none; z-index: 0; opacity: 0.4;
+}
+.orb-1 { width:620px; height:620px; background: radial-gradient(circle, #1a4a6e 0%, transparent 70%); top:-220px; right:-180px; }
+.orb-2 { width:480px; height:480px; background: radial-gradient(circle, #0d2a3e 0%, transparent 70%); bottom:60px; left:-140px; }
+.orb-3 { width:340px; height:340px; background: radial-gradient(circle, rgba(232,197,109,0.07) 0%, transparent 70%); top:50%; left:50%; transform:translate(-50%,-50%); }
+
+/* ── Reveal ── */
+.reveal { opacity:0; transform:translateY(26px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+.delay-1 { transition-delay:.10s; }
+.delay-2 { transition-delay:.20s; }
+.delay-3 { transition-delay:.30s; }
+.delay-4 { transition-delay:.40s; }
+.delay-5 { transition-delay:.50s; }
+
+/* ══════════════════════
+   HEADER
+══════════════════════ */
+.site-header {
+  position: relative; z-index: 2;
+  background: linear-gradient(160deg, #0f2336 0%, #0d1b2a 60%);
+  border-bottom: 1px solid rgba(232,197,109,0.15);
   text-align: center;
-  padding: 40px 20px 30px;
+  padding: 52px 24px 40px;
+}
+.header-inner { max-width: 700px; margin: 0 auto; }
+
+.header-badge {
+  display: inline-block;
+  font-family: var(--font-b);
+  font-size: .72rem;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(232,197,109,0.4);
+  padding: 4px 14px;
+  border-radius: 20px;
+  margin-bottom: 16px;
 }
 
-header h1 {
-  font-size: 2.4rem;
-  margin-bottom: 8px;
+.site-title {
+  font-family: var(--font-d);
+  font-size: clamp(2.6rem, 7vw, 4.4rem);
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.1;
+  letter-spacing: -.01em;
+  margin-bottom: 14px;
 }
 
-header p.slogan {
-  font-size: 1.1rem;
+.slogan {
+  font-family: var(--font-d);
   font-style: italic;
-  color: #ffd166;
+  font-size: clamp(1rem, 2.5vw, 1.2rem);
+  color: var(--gold-light);
+  margin-bottom: 24px;
 }
 
-/* ── Навігація ── */
-nav {
-  background-color: #122840;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 12px;
+.header-divider {
+  display: flex; align-items: center; gap: 12px; justify-content: center;
+}
+.header-divider span:first-child,
+.header-divider span:last-child {
+  display: block; height: 1px; width: 80px;
+  background: linear-gradient(90deg, transparent, rgba(232,197,109,0.5));
+}
+.header-divider span:last-child { transform: scaleX(-1); }
+.diamond { color: var(--gold); font-size: .6rem; }
+
+/* ══════════════════════
+   NAV
+══════════════════════ */
+.site-nav {
+  position: relative; z-index: 2;
+  background: #0a1624;
+  display: flex; justify-content: center; gap: 12px;
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-nav a {
-  color: #ffd166;
+.nav-link {
+  font-family: var(--font-b);
+  font-size: .9rem; font-weight: 500;
+  color: var(--text-muted);
   text-decoration: none;
-  font-size: 1rem;
-  padding: 6px 16px;
-  border: 1px solid #ffd166;
-  border-radius: 4px;
-  transition: background 0.2s;
+  padding: 8px 22px;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px;
+  transition: all .2s ease;
+  letter-spacing: .04em;
 }
+.nav-link:hover { color: var(--gold); border-color: rgba(232,197,109,0.35); background: var(--gold-dim); }
+.nav-link.active { color: var(--gold); border-color: rgba(232,197,109,0.45); background: var(--gold-dim); }
 
-nav a:hover {
-  background-color: #ffd166;
-  color: #122840;
-}
-
-/* ── Основний вміст ── */
-main {
-  max-width: 860px;
-  margin: 40px auto;
+/* ══════════════════════
+   MAIN / CARDS
+══════════════════════ */
+.site-main {
+  position: relative; z-index: 1;
+  max-width: 860px; margin: 48px auto;
   padding: 0 20px;
 }
 
-/* ── Секції ── */
-section {
-  background: white;
-  border-radius: 6px;
-  padding: 28px;
+.card {
+  background: var(--navy-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 32px 36px;
   margin-bottom: 28px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+}
+.card::before {
+  content: '';
+  position: absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .6;
 }
 
-section h2 {
-  font-size: 1.3rem;
-  color: #1a3a5c;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #ffd166;
-  padding-bottom: 8px;
+.card-label {
+  font-size: .68rem; font-weight: 500; letter-spacing: .2em;
+  color: var(--gold); opacity: .7;
+  margin-bottom: 10px; text-transform: uppercase;
 }
 
-/* ── Відео ── */
-video {
-  width: 100%;
-  border-radius: 4px;
-  background: #ddd;
-  min-height: 200px;
+.section-title {
+  font-family: var(--font-d);
+  font-size: 1.45rem; font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(232,197,109,0.2);
+}
+
+.section-text {
+  font-size: .95rem; color: var(--text-muted); line-height: 1.7;
+}
+
+/* ── Video ── */
+.video-wrapper { position: relative; border-radius: 8px; overflow: hidden; background: #0a1522; min-height: 220px; }
+video { width: 100%; display: block; border-radius: 8px; min-height: 220px; }
+.video-placeholder {
+  position: absolute; inset:0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; background: #0a1522; color: var(--text-muted);
+  font-size: .9rem;
+}
+.play-icon { font-size: 2.4rem; color: var(--gold); opacity: .6; }
+
+/* ── Audio ── */
+.audio-wrapper { display: flex; flex-direction: column; gap: 14px; }
+.audio-bars { display: flex; align-items: flex-end; gap: 4px; height: 48px; }
+.audio-bars span {
+  flex: 1; height: 30%; min-height: 4px;
+  background: linear-gradient(to top, var(--gold), var(--gold-light));
+  border-radius: 3px;
+  transition: height .18s ease;
+  opacity: .45;
+}
+.audio-bars span.active { opacity: 1; }
+audio { width: 100%; accent-color: var(--gold); }
+
+/* ── About ── */
+.about-grid { display: grid; grid-template-columns: 1fr auto; gap: 32px; align-items: center; margin-bottom: 24px; }
+@media (max-width: 580px) { .about-grid { grid-template-columns: 1fr; } }
+
+.about-stats { display: flex; gap: 20px; }
+.stat { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.stat-num { font-family: var(--font-d); font-size: 2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+.stat-label { font-size: .7rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
+
+.cta-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #0d1b2a;
+  font-family: var(--font-b); font-weight: 500; font-size: .9rem;
+  text-decoration: none;
+  padding: 12px 26px; border-radius: 8px;
+  transition: opacity .2s, transform .2s;
+}
+.cta-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+/* ══════════════════════
+   TEAM PAGE
+══════════════════════ */
+.team-section {
+  position: relative; z-index: 1;
+  max-width: 1000px; margin: 48px auto;
+  padding: 0 20px 60px;
+}
+
+.team-header { text-align: center; margin-bottom: 48px; }
+
+.section-title-lg {
+  font-family: var(--font-d);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  font-weight: 700; color: #fff;
+  margin-bottom: 10px;
+}
+
+.team-subtitle {
+  font-family: var(--font-d);
+  font-style: italic; font-size: 1.05rem;
+  color: var(--gold); opacity: .8;
+}
+
+/* ── Team Grid ── */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+}
+
+/* ── Member Card ── */
+.member-card {
+  background: var(--navy-card);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: var(--radius);
+  padding: 30px 24px 24px;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  box-shadow: var(--shadow);
+  position: relative; overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+  text-align: center;
+}
+.member-card::before {
+  content: '';
+  position: absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+}
+.member-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+}
+
+/* Captain highlight */
+.captain-card {
+  border-color: rgba(232,197,109,0.3);
+  background: linear-gradient(170deg, #1a2638 0%, var(--navy-card) 100%);
+}
+.captain-card::before {
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: .5;
+}
+
+.captain-crown {
+  position: absolute; top: 14px; right: 14px;
+  font-size: .68rem; font-weight: 500; letter-spacing: .08em;
+  color: #0d1b2a;
+  background: var(--gold);
+  padding: 3px 10px; border-radius: 20px;
+}
+
+/* ── Avatar ── */
+.avatar-container {
+  position: relative;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.avatar-img {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center top;
+  border: 2px solid rgba(232,197,109,0.35);
   display: block;
 }
 
-/* ── Аудіо ── */
-audio {
-  width: 100%;
-  margin-top: 8px;
+/* Fallback circle with initials */
+.avatar-fallback {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--navy-light), #1e3a5c);
+  border: 2px solid rgba(232,197,109,0.35);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-d);
+  font-size: 1.6rem; font-weight: 700;
+  color: var(--gold);
+  letter-spacing: .03em;
+  user-select: none;
 }
 
-/* ── Список учасників ── */
-.team-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.captain-card .avatar-img,
+.captain-card .avatar-fallback {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(232,197,109,0.25);
 }
 
-.team-list li {
-  background: #f0f6ff;
-  border-left: 4px solid #1a3a5c;
-  padding: 14px 18px;
-  border-radius: 4px;
-  font-size: 1rem;
+/* ── Member Info ── */
+.member-info { width: 100%; }
+
+.member-name {
+  font-family: var(--font-d);
+  font-size: 1.1rem; font-weight: 700;
+  color: #fff; margin-bottom: 6px;
 }
 
-.team-list li.captain {
-  border-left-color: #ffd166;
-  background: #fffbe6;
-  font-weight: bold;
+.member-role {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  font-size: .78rem; color: var(--gold); margin-bottom: 10px;
+  letter-spacing: .04em;
+}
+.role-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--gold); flex-shrink: 0;
 }
 
-.team-list li span.badge {
+.member-desc {
+  font-size: .82rem; color: var(--text-muted); line-height: 1.6;
+}
+
+.member-tag {
   display: inline-block;
-  font-size: 0.72rem;
-  background: #ffd166;
-  color: #333;
-  padding: 2px 8px;
-  border-radius: 3px;
-  margin-left: 10px;
-  font-weight: normal;
-  vertical-align: middle;
+  font-size: .65rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--text-muted);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 3px 12px; border-radius: 20px;
+  margin-top: 4px;
+}
+.captain-card .member-tag {
+  color: var(--gold); border-color: rgba(232,197,109,0.3);
 }
 
-/* ── Підвал ── */
-footer {
+/* ══════════════════════
+   FOOTER
+══════════════════════ */
+.site-footer {
+  position: relative; z-index: 1;
+  background: #080f18;
+  border-top: 1px solid rgba(255,255,255,0.06);
   text-align: center;
-  padding: 20px;
-  background: #1a3a5c;
-  color: #aac4e0;
-  font-size: 0.85rem;
-  margin-top: 40px;
+  padding: 36px 20px;
+}
+.footer-title {
+  font-family: var(--font-d);
+  font-size: 1.3rem; font-weight: 700; color: var(--gold);
+  margin-bottom: 4px;
+}
+.footer-motto {
+  font-family: var(--font-d);
+  font-style: italic; font-size: .9rem;
+  color: var(--text-muted); margin-bottom: 10px;
+}
+.footer-copy {
+  font-size: .75rem; color: rgba(255,255,255,0.25);
+  letter-spacing: .06em;
+}
+
+/* ══════════════════════
+   RESPONSIVE
+══════════════════════ */
+@media (max-width: 600px) {
+  .card { padding: 24px 20px; }
+  .team-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 400px) {
+  .team-grid { grid-template-columns: 1fr; }
 }

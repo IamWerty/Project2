@@ -3,51 +3,103 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Команда «Фенікс»</title>
+  <title>Команда «HTSS»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    <h1>Команда «HTSS»</h1>
-    <p class="slogan">«HTML  дає нам силу, а CSS дає нам крила!»</p>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-badge reveal">Команда</div>
+      <h1 class="site-title reveal delay-1">«HTSS»</h1>
+      <p class="slogan reveal delay-2">«HTML дає нам силу, а CSS дає нам крила!»</p>
+      <div class="header-divider reveal delay-3"><span></span><span class="diamond">◆</span><span></span></div>
+    </div>
   </header>
 
-  <nav>
-    <a href="index.html">Головна</a>
-    <a href="team.html">Склад команди</a>
+  <nav class="site-nav reveal delay-3">
+    <a href="index.html" class="nav-link active">⌂ Головна</a>
+    <a href="team.html" class="nav-link">◈ Склад команди</a>
   </nav>
 
-  <main>
+  <main class="site-main">
 
-    <section>
-      <h2>Відео з гаслом</h2>
-      <video src="" controls></video>
+    <section class="card reveal delay-4">
+      <div class="card-label">01</div>
+      <h2 class="section-title">Відео з гаслом</h2>
+      <div class="video-wrapper">
+        <video src="" controls>Ваш браузер не підтримує відео.</video>
+        <div class="video-placeholder" id="vph"><span class="play-icon">▶</span><p>е, а де.</p></div>
+      </div>
     </section>
 
-    <section>
-      <h2>Гімн команди</h2>
-      <p>Слухайте офіційний гімн команди «Фенікс»:</p>
-      <audio controls>
-        <source src="" type="audio/mpeg" />
-        Ваш браузер не підтримує аудіо.
-      </audio>
+    <section class="card reveal delay-5">
+      <div class="card-label">02</div>
+      <h2 class="section-title">Гімн команди</h2>
+      <p class="section-text">Слухайте офіційний гімн команди «HTSS»:</p>
+      <div class="audio-wrapper">
+        <div class="audio-bars" id="audioBars">
+          <span></span><span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <audio id="teamAudio" controls>
+          <source src="" type="audio/mpeg" />Ваш браузер не підтримує аудіо.
+        </audio>
+      </div>
     </section>
 
-    <section>
-      <h2>Про нас</h2>
-      <p>
-        Ми — команда «HTSS». Чотири учасники, одна мета.
-        Ми вміємо підніматися після невдач і рухатися вперед разом.
-        Наше гасло надихає нас щодня.
-      </p>
+    <section class="card reveal delay-4">
+      <div class="card-label">03</div>
+      <h2 class="section-title">Про нас</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="section-text">Ми — команда <strong>«HTSS»</strong>. Чотири учасники, одна мета. Ми вміємо вистояти додаткове в Ліни Йосипівни. Наше гасло ми міняємо щодня.</p>
+          <p class="section-text" style="margin-top:12px">HTML будує наш фундамент, CSS — наше обличчя. Разом ми створюємо не просто сторінки, а просто сторінки.</p>
+        </div>
+        </div>
+      </div>
+      <a href="team.html" class="cta-btn">Познайомитись з командою →</a>
     </section>
 
   </main>
 
-  <footer>
-    <p>© 2025 Команда «HTSS» · «Із попелу — до перемоги!»</p>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">«HTSS»</p>
+      <p class="footer-motto">«Із попелу — до перемоги!»</p>
+      <p class="footer-copy">© 2025 Команда «HTSS»</p>
+    </div>
   </footer>
 
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => {
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    }),{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    const video = document.querySelector('video');
+    const vph = document.getElementById('vph');
+    if (!video.getAttribute('src') || video.getAttribute('src')==='') vph.style.display='flex';
+    else vph.style.display='none';
+
+    const audio = document.getElementById('teamAudio');
+    const bars  = document.querySelectorAll('#audioBars span');
+    let anim;
+    audio.addEventListener('play', () => {
+      bars.forEach(b => b.classList.add('active'));
+      anim = setInterval(() => bars.forEach(b => b.style.height=(Math.random()*60+20)+'%'), 180);
+    });
+    audio.addEventListener('pause', () => {
+      bars.forEach(b => { b.classList.remove('active'); b.style.height='30%'; });
+      clearInterval(anim);
+    });
+  </script>
 </body>
 </html>

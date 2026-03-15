@@ -3,41 +3,125 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Склад команди — «Фенікс»</title>
+  <title>Склад команди — «HTSS»</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header>
-    <h1>Команда «HTSS»</h1>
-    <p class="slogan">«HTML  дає нам силу, а CSS дає нам крила!»</p>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="header-badge reveal">Команда</div>
+      <h1 class="site-title reveal delay-1">«HTSS»</h1>
+      <p class="slogan reveal delay-2">«HTML дає нам силу, а CSS дає нам крила!»</p>
+      <div class="header-divider reveal delay-3"><span></span><span class="diamond">◆</span><span></span></div>
+    </div>
   </header>
 
-  <nav>
-    <a href="index.html">Головна</a>
-    <a href="team.html">Склад команди</a>
+  <nav class="site-nav reveal delay-3">
+    <a href="index.html" class="nav-link">⌂ Головна</a>
+    <a href="team.html" class="nav-link active">◈ Склад команди</a>
   </nav>
 
-  <main>
+  <main class="site-main">
+    <section class="team-section">
+      <div class="team-header reveal">
+        <h2 class="section-title-lg">Наша команда</h2>
+        <p class="team-subtitle">Чотири особистості — одна сила</p>
+      </div>
 
-    <section>
-      <h2>Склад команди</h2>
-      <ul class="team-list">
-        <li class="captain">
-          Комісарук Андрій
-          <span class="badge">Капітан</span>
-        </li>
-        <li>Іванів Валентина</li>
-        <li>Григорська Анна</li>
-        <li>Карвацький Богдан</li>
-      </ul>
+      <div class="team-grid">
+        <div class="member-card captain-card reveal delay-1">
+          <div class="captain-crown">👑 Капітан</div>
+          <div class="avatar-container">
+            <img class="avatar-img" src="" alt="Комісарук Андрій" initials="КА" onerror="avatarFallback(this)" onload="avatarLoaded(this)" />
+            <div class="avatar-fallback" style="display:none"></div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Комісарук Андрій</h3>
+            <div class="member-role"><span class="role-dot"></span>Лідер · Дипломат</div>
+            <p class="member-desc">А там єгипетський трикутник!</p>
+          </div>
+          <span class="member-tag">"НІҐЕР НА СПАЙКУ"</span>
+        </div>
+
+        <div class="member-card reveal delay-2">
+          <div class="avatar-container">
+            <img class="avatar-img" src="valentina.jpg" alt="Іванів Валентина" initials="ІВ" onerror="avatarFallback(this)" onload="avatarLoaded(this)" />
+            <div class="avatar-fallback" style="display:none"></div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Іванів Валентина</h3>
+            <div class="member-role"><span class="role-dot"></span>Дизайн · Мистецтво</div>
+            <p class="member-desc">Купи слона.</p>
+          </div>
+          <span class="member-tag">250грн</span>
+        </div>
+
+        <div class="member-card reveal delay-3">
+          <div class="avatar-container">
+            <img class="avatar-img" src="" alt="Григорська Анна" initials="ГА" onerror="avatarFallback(this)" onload="avatarLoaded(this)" />
+            <div class="avatar-fallback" style="display:none"></div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Григорська Анна</h3>
+            <div class="member-role"><span class="role-dot"></span>Медіа · Аудіо/Відео</div>
+            <p class="member-desc">-я не придумала -Так і написати? -як хочеш</p>
+          </div>
+          <span class="member-tag">Просто Аня</span>
+        </div>
+
+        <div class="member-card reveal delay-4">
+          <div class="avatar-container">
+            <img class="avatar-img" src="bodya.jpg" alt="Карвацький Богдан" initials="КБ" onerror="avatarFallback(this)" onload="avatarLoaded(this)" />
+            <div class="avatar-fallback" style="display:none"></div>
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Карвацький Богдан</h3>
+            <div class="member-role"><span class="role-dot"></span>sin²α*cos²α=1</div>
+            <p class="member-desc">дельта альфа альфа штрих, дельта альфа гамма штріх</p>
+          </div>
+          <span class="member-tag">Кожну циферку мені диктуй</span>
+        </div>
+
+      </div>
     </section>
-
   </main>
 
-  <footer>
-    <p>© 2025 Команда «HTSS» · «Із попелу — до перемоги!»</p>
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-title">«HTSS»</p>
+      <p class="footer-motto">«Із попелу — до перемоги!»</p>
+      <p class="footer-copy">© 2025 Команда «HTSS»</p>
+    </div>
   </footer>
 
+  <script>
+    const obs = new IntersectionObserver(es => es.forEach(e => {
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    }),{threshold:0.1});
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    function avatarFallback(img) {
+      img.style.display = 'none';
+      const fb = img.nextElementSibling;
+      fb.textContent = img.getAttribute('initials') || '?';
+      fb.style.display = 'flex';
+    }
+    function avatarLoaded(img) {
+      img.style.display = 'block';
+      img.nextElementSibling.style.display = 'none';
+    }
+    document.querySelectorAll('.avatar-img').forEach(img => {
+      const src = img.getAttribute('src');
+      if (!src || src.trim() === '') avatarFallback(img);
+    });
+  </script>
 </body>
 </html>
